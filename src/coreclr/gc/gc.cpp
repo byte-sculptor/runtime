@@ -35347,6 +35347,8 @@ void gc_heap::init_static_data()
         gen1_max_size = min (gen1_max_size, gen1_max_size_config);
     }
 
+    float limit = (float)GCConfig::GetGCBudgetGrowthLimit(); 
+
     dprintf (GTC_LOG, ("gen0 min: %Id, max: %Id, gen1 max: %Id",
         gen0_min_size, gen0_max_size, gen1_max_size));
 
@@ -35355,6 +35357,7 @@ void gc_heap::init_static_data()
         static_data_table[i][0].min_size = gen0_min_size;
         static_data_table[i][0].max_size = gen0_max_size;
         static_data_table[i][1].max_size = gen1_max_size;
+        static_data_table[i][1].limit = limit;
     }
 }
 
