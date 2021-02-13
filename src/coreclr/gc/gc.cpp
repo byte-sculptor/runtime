@@ -18,6 +18,7 @@
 
 #include "gcpriv.h"
 
+
 #if defined(TARGET_AMD64) && defined(TARGET_WINDOWS)
 #define USE_VXSORT
 #else
@@ -35359,6 +35360,19 @@ void gc_heap::init_static_data()
         static_data_table[i][1].max_size = gen1_max_size;
         static_data_table[i][1].limit = limit;
     }
+
+    // Let's write the effective config to a file.
+    //
+    FILE* f = fopen("N:\\MLOS\\OptimizingGC\\v2\\effective_config.json", "w");
+    fprintf(f, "{\n");
+    fprintf(f, "\t'gen0_min_size': %d,\n", gen0_min_size);
+    fprintf(f, "\t'gen0_max_size': %d,\n", gen0_max_size);
+    fprintf(f, "\t'gen1_max_size': %d,\n", gen1_max_size);
+    fprintf(f, "\t'complus_gc_budget_growth_limit': %f,\n", limit);
+    fprintf(f, "}\n");
+    fclose(f);
+    
+
 }
 
 bool gc_heap::init_dynamic_data()
