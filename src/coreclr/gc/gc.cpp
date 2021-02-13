@@ -35365,10 +35365,10 @@ void gc_heap::init_static_data()
     //
     FILE* f = fopen("N:\\MLOS\\OptimizingGC\\v2\\effective_config.json", "w");
     fprintf(f, "{\n");
-    fprintf(f, "\t'gen0_min_size': %d,\n", gen0_min_size);
-    fprintf(f, "\t'gen0_max_size': %d,\n", gen0_max_size);
-    fprintf(f, "\t'gen1_max_size': %d,\n", gen1_max_size);
-    fprintf(f, "\t'complus_gc_budget_growth_limit': %f,\n", limit);
+    fprintf(f, "\t\"complus_gcgen0size_bytes\": %d,\n", gen0_min_size);
+    fprintf(f, "\t\"complus_gcgen0maxbudget_bytes\": %d,\n", gen0_max_size);
+    fprintf(f, "\t\"complus_gcgen1maxbudget_bytes\": %d,\n", gen1_max_size);
+    fprintf(f, "\t\"complus_gc_budget_growth_limit\": %f\n", limit);
     fprintf(f, "}\n");
     fclose(f);
     
